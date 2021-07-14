@@ -29,6 +29,36 @@ namespace ByteBank.SistemaAgencia
             _proximaPosicao++;
         }
 
+        public void Remover(ContaCorrente item)
+        {
+            int indiceItem = -1;
+
+            for (int i = 0; i < _proximaPosicao; i++)
+            {
+                //o argumento abaixo está comparando REFERENCIA
+                //Queremos realmente comparar a referencia do objeto?
+                //ou queremos comparar a equivalencia entre 2 objetos?
+                // if (_itens[i] == item)
+
+                ContaCorrente itemAtual = _itens[i];
+                
+                //Se queremos comparar equivalencia devemos usar o método EQUALS da classe Object
+                if (itemAtual.Equals(item))
+                {
+                    indiceItem = i;
+                    break;
+                }
+            }
+
+            for (int i = indiceItem; i < _proximaPosicao-1; i++)
+            {
+                _itens[i] = _itens[i + 1];
+            }
+
+            _proximaPosicao--;
+            _itens[_proximaPosicao] = null;
+        }
+
         private void VerificaCapacidade(int tamanhoNecessario)
         {
             if(_itens.Length >= tamanhoNecessario)
