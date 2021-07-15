@@ -111,10 +111,9 @@ namespace ByteBank.Modelos
 
             contaDestino.Depositar(valor);
         }
+
         public override bool Equals(object obj)
         {
-            //caso a conversão "obj as ContaCorrente" falhe não será lançada uma excessão
-            // ele usará o "outraConta" que será nula, não lança uma exceção;
             ContaCorrente outraConta = obj as ContaCorrente;
 
             if(outraConta == null)
@@ -123,16 +122,8 @@ namespace ByteBank.Modelos
             }
 
             return Numero == outraConta.Numero && Agencia == outraConta.Agencia;
-
-            //if (Numero == outraConta.Numero && Agencia == outraConta.Agencia)
-            //{
-            //    return true;
-            //}
-
-            //return false;
-
-            //return base.Equals(obj);
         }
+
     }
 
 }
