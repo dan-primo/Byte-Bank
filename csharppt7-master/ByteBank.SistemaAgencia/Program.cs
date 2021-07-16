@@ -26,25 +26,35 @@ namespace ByteBank.SistemaAgencia
 
             //contas.Sort(new ComparadorContaCorrentePorAgencia());
 
-            IOrderedEnumerable<ContaCorrente> contasOrdenadas =
-                //equivalente: contas.OrderBy(conta => conta.Numero);
-                contas.OrderBy(conta => {
-                    if (conta == null)
-                    {
-                        return int.MinValue;
-                    }
-                    return conta.Numero; 
-                });
+            //IEnumerable<ContaCorrente>
+            //var contasNaoNulas = contas.Where(conta => conta != null);
+
+            //IOrderedEnumerable<ContaCorrente>
+            //var contasOrdenadas = contasNaoNulas.OrderBy(conta => conta.Numero);
+
+            var contasOrdenadas = contas
+                .Where(conta => conta != null)
+                .OrderBy(conta => conta.Numero);
+
+            //equivalente: contas.OrderBy(conta => conta.Numero);
+            // contas.OrderBy(conta => {
+            //        if (conta == null)
+            //        {
+            //            return int.MinValue;
+            //        }
+            //        return conta.Numero; 
+            //    });
 
             foreach (var conta in contasOrdenadas)
             {
-                if (conta != null)
-                {
-                    Console.WriteLine($"Número da Conta: {conta.Numero} ; Número da Agência: {conta.Agencia}");
-                }
-
+                Console.WriteLine($"Número da Conta: {conta.Numero} ; Número da Agência: {conta.Agencia}");
                 /*
-                  
+                 * 
+                    if (conta != null)
+                    {
+                        Console.WriteLine($"Número da Conta: {conta.Numero} ; Número da Agência: {conta.Agencia}");
+                    }
+                 *  
                 if (conta == null)
                 {
                     Console.WriteLine("Conta Nula!");
